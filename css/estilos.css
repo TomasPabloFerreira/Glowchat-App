@@ -98,3 +98,7 @@ a {
 .btn-secondary {
 	background-color: #8064A2 !important;;
 }
+
+.dataTables_info {
+color: white;
+}
