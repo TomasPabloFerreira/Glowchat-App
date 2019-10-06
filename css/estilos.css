@@ -1,0 +1,100 @@
+body {
+	background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+h1 {
+	text-align: center;
+	color: white;
+	font-size: 45px;
+}
+
+input[type=text] {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+}
+
+input[type=password] {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+}
+
+label {
+	color: white;
+	font-size: 22;
+}
+
+table {
+	margin: 0px auto;
+}
+
+th {
+	font-size: 21;
+	color: white;
+}
+
+tr {
+	color: white;
+}
+
+td {
+	text-align: left;
+	font-size: 21px;
+	color: white;
+}
+
+a {
+	color: white;
+}
+
+
+.card {
+	background-color:rgba(40,40,40,0.75);
+}
+
+.jumbotron {
+	border: 3px solid;
+	color: black;
+	padding: 3px;
+}
+
+.hola {
+	background-color: #ccc;
+	padding: 20px;
+}
+
+.sub {
+	background-color: #203158;
+	padding: 5px;
+}
+
+.space {
+	margin-bottom: 30px;
+}
+
+.bgspace {
+	margin-bottom: 40px;
+}
+
+.smspace {
+	margin-bottom: 8px;
+}
+
+.logo-header {
+	width: 30%;
+}
+
+.perfil {
+	width: 15%;
+}
+
+.btn-secondary {
+	background-color: #8064A2 !important;;
+}
