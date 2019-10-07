@@ -59,6 +59,30 @@ if($mysqli->query($sql)) {
 	<?php
 }
 
+$sql = "
+CREATE TABLE IF NOT EXISTS `messages` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`message_type` int(3) NOT NULL,
+`chat_room_id` int(11) NOT NULL,
+`message` varchar(200) NOT NULL,
+`datetime` datetime NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+";
+if($mysqli->query($sql)) {
+
+	?>
+	<p style='color:green ; font-size:30 '>Tabla chat_rooms creada correctamente.</p>
+
+	<?php
+} else {
+	?>
+	<p style='color:red ; font-size:30 '> Error al crear tabla chat_rooms, intente de nuevo.</p>
+
+	<?php
+}
+
 
 $sql = "
 CREATE TABLE IF NOT EXISTS  `contacts` (
