@@ -8,10 +8,10 @@ $sessionid = $_SESSION['id'];
 
 // Select all users that are not contacts of the logged user
 $sql = "
-SELECT id,name FROM users WHERE id NOT IN (
-	SELECT C.contact_id FROM users U
-	LEFT JOIN contacts C ON U.id = C.user_id 
-	WHERE C.user_id = $sessionid
+SELECT id,name FROM users WHERE id IN (
+SELECT C.contact_id FROM users U
+LEFT JOIN contacts C ON U.id = C.user_id 
+WHERE C.user_id = $sessionid
 )
 AND id <> $sessionid
 ";
@@ -22,10 +22,8 @@ $result = $mysqli->query($sql);
 ?>
 <div class="row">
 
-	<div class="col-lg-4 text-left pl-5" style="color: white; font-size: 150%;">
-		Lista de usuarios
+	<div class="col-lg-10">
 	</div>
-	<div class="col-lg-6"></div>
 	<div class="col-lg-2 ">
 		<i>
 			<a href="perfil.php">
@@ -57,10 +55,18 @@ $result = $mysqli->query($sql);
 						<td><?php echo $row['name']; ?></td>
 
 						<td class="text-right">
-							<form method="post" action="add_user.php">
-								<input type="hidden" id="addedUser" name="addedUser" value="<?php echo $row['id']; ?>">
-								<button type="submit" class="btn btn-primary">
-									<i class="fas fa-user-plus"></i> Agregar usuario
+
+							<form method="post" action="openChat.php" style="display: inline-block;" class="pr-1">
+								<input type="hidden" id="user1" name="user1" value="<?php echo $sessionid; ?>">
+								<input type="hidden" id="user2" name="user2" value="<?php echo $row['id']; ?>">
+								<button type="submit" class="btn btn-info">
+									<i class="fas fa-comment-dots"></i> Abrir conversación
+								</button>
+							</form>	
+							<form method="post" action="delete_user.php" style="display: inline-block;">
+								<input type="hidden" id="deletedUser" name="deletedUser" value="<?php echo $row['id']; ?>">
+								<button type="submit" class="btn btn-danger">
+									<i class="fas fa-user-minus"></i> Eliminar usuario
 								</button>
 							</form>							
 						</td>

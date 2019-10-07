@@ -14,12 +14,17 @@ if ( isset($_SESSION["id"]) ) {
 
 			<h1 class="pb-4">GLOWCHAT</h1>
 
-			<a href="userlist.php" class="btn btn-info active mb-2">
+			<a href="userlist.php" class="btn btn-primary active mb-2">
 				<i class="fas fa-list-ul mr-2"></i>
 				Listar Usuarios
 			</a>
 			<br>
-			<a href="logout.php" class="btn btn-info active">
+			<a href="contactlist.php" class="btn btn-success active mb-2">
+				<i class="fas fa-list-ul mr-2"></i>
+				Listar Contactos
+			</a>
+			<br>
+			<a href="logout.php" class="btn btn-danger active">
 				<i class="fas fa-sign-out-alt mr-2"></i>
 				Cerrar Sesion
 			</a>
