@@ -56,7 +56,7 @@ $result = $mysqli->query($sql);
 
 						<td class="text-right">
 
-							<form method="post" action="openChat.php" style="display: inline-block;" class="pr-1">
+							<form method="post" action="openchat.php" style="display: inline-block;" class="pr-1">
 								<input type="hidden" id="user1" name="user1" value="<?php echo $sessionid; ?>">
 								<input type="hidden" id="user2" name="user2" value="<?php echo $row['id']; ?>">
 								<button type="submit" class="btn btn-info">
