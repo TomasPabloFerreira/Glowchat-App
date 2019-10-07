@@ -27,16 +27,38 @@ if($mysqli->query($sql)) {
 
 	?>
 	<p style='color:green ; font-size:30 '>Tabla usuarios creada correctamente.</p>
-	<a href="index.php" class="btn btn-info active">
-	</a>
+
 	<?php
 } else {
 	?>
 	<p style='color:red ; font-size:30 '> Error al crear tabla usuarios, intente de nuevo.</p>
-	<a href="registro.php" class="btn btn-info active">
-	</a>
+
+	<?php
+} 
+
+$sql = "
+CREATE TABLE IF NOT EXISTS `chat_rooms` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(45) NOT NULL,
+`user1` int(11) NOT NULL,
+`user2` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+";
+
+if($mysqli->query($sql)) {
+
+	?>
+	<p style='color:green ; font-size:30 '>Tabla chat_rooms creada correctamente.</p>
+
+	<?php
+} else {
+	?>
+	<p style='color:red ; font-size:30 '> Error al crear tabla chat_rooms, intente de nuevo.</p>
+
 	<?php
 }
+
 
 $sql = "
 CREATE TABLE IF NOT EXISTS  `contacts` (
