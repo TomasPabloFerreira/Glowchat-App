@@ -9,9 +9,9 @@ $sessionid = $_SESSION['id'];
 // Select all users that are not contacts of the logged user
 $sql = "
 SELECT id,name FROM users WHERE id NOT IN (
-	SELECT C.contact_id FROM users U
-	LEFT JOIN contacts C ON U.id = C.user_id 
-	WHERE C.user_id = $sessionid
+SELECT C.contact_id FROM users U
+LEFT JOIN contacts C ON U.id = C.user_id 
+WHERE C.user_id = $sessionid
 )
 AND id <> $sessionid
 ";
@@ -26,7 +26,7 @@ $result = $mysqli->query($sql);
 		Lista de usuarios
 	</div>
 	<div class="col-lg-6"></div>
-	<div class="col-lg-2 ">
+	<div class="col-lg-2 text-center">
 		<i>
 			<a href="profile.php">
 				<div class="fas fa-user mr-1" > </div>
@@ -54,46 +54,54 @@ $result = $mysqli->query($sql);
 
 				<?php while ( $row = $result->fetch_assoc() ) { ?>
 					<tr>
-						<td><?php echo $row['name']; ?></td>
+						<td>
+							<img src="images/<?php
+							if(file_exists("images/".$row['id'].".jpg"))
+							{
+								echo $row['id'].".jpg";
+								} else {
+									echo "perfil default.png";
+								}
+								?>" alt="Avatar" class="circular-image-ultrasmall mr-2">
+								<?php echo $row['name']; ?>
+							</td>
 
-						<td class="text-right">
-							<form method="post" action="add_user.php">
-								<input type="hidden" id="addedUser" name="addedUser" value="<?php echo $row['id']; ?>">
-								<button type="submit" class="btn btn-primary">
-									<i class="fas fa-user-plus"></i> Agregar usuario
-								</button>
-							</form>							
-						</td>
-					</tr>
+							<td class="text-right">
+								<form method="post" action="add_user.php">
+									<input type="hidden" id="addedUser" name="addedUser" value="<?php echo $row['id']; ?>">
+									<button type="submit" class="btn btn-primary">
+										<i class="fas fa-user-plus"></i> Agregar usuario
+									</button>
+								</form>							
+							</td>
+						</tr>
 
-				<?php } ?>
+					<?php } ?>
 
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-lg-12">
-		<hr>
-		<a href="index.php" class="btn btn-info active">
-			<i class='fas fa-undo-alt pr-2'></i>Volver al inicio
-		</a>
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<hr>
+			<a href="index.php" class="btn btn-info active">
+				<i class='fas fa-undo-alt pr-2'></i>Volver al inicio
+			</a>
+		</div>
 	</div>
-</div>
 
-<!-- DataTables scripts -->
+	<!-- DataTables scripts -->
 
-<script type="text/javascript">
-	$(document).ready( function () {
+	<script type="text/javascript">
 		$('#userListTable').DataTable({
 			"columns": [
 			null,
 			{ "orderable": false }
 			]
 		});
-	} );
-</script>
+	</script>
 
 </body>
 

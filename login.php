@@ -3,7 +3,7 @@
 
 <div class="row">
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 text-center">
         <form action="validacionlogin.php" method="post" class="pb-2">
 
             <h1 class="display-4 pb-4">Ingreso al sistema</h1>

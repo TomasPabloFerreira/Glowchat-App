@@ -59,6 +59,6 @@
 </nav>
 
 <div class="container-fluid w-75">
-	<div class="card border-0 shadow mt-4 text-center">
+	<div class="card border-0 shadow mt-4">
 		<div class="card-body p-4">
 

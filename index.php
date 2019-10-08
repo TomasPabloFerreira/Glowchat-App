@@ -5,7 +5,7 @@ if ( isset($_SESSION["id"]) ) {
 
 	?>
 
-	<div class="row">
+	<div class="row text-center">
 
 		<div class="col-lg-2">
 		</div>
@@ -48,7 +48,7 @@ if ( isset($_SESSION["id"]) ) {
 } else {
 	?>
 
-	<div class="row">
+	<div class="row text-center">
 		<div class="col-lg-12 pb-4">
 
 			<h1 class="pb-4">GLOWCHAT</h1>

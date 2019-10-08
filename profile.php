@@ -3,7 +3,7 @@ include('header.php');
 require('islogged.php');
 ?>
 
-<div class="row">
+<div class="row text-center">
 
 	<div class="col-lg-12 pb-3">
 
