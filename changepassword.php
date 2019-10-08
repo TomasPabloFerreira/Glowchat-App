@@ -38,7 +38,7 @@ if ( isset($_SESSION["user"]) ) {
 							<i class="fas fa-sign-in-alt" style="margin-right:8px;"></i>Cambiar contraseña</button>
 					</form>
 
-					<a href="perfil.php" class="btn btn-info active">
+					<a href="profile.php" class="btn btn-info active">
 						<i class='fas fa-undo-alt' style="margin-right:8px;"></i>Volver</a>
 
 				</div>

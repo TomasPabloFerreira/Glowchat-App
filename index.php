@@ -34,7 +34,7 @@ if ( isset($_SESSION["id"]) ) {
 		<div class="col-lg-2 ">
 			<i>
 
-				<a href="perfil.php">
+				<a href="profile.php">
 					<div class="fas fa-user mr-1"> </div>
 					<?php echo $_SESSION ['user']; ?>
 				</a>

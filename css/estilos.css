@@ -100,5 +100,17 @@ a {
 }
 
 .dataTables_info {
-color: white;
+	color: white;
+}
+
+.circular-image {
+	width: 250px;
+	height: 250px;
+	border-radius: 150px;
+}
+
+.circular-image-small {
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
 }
