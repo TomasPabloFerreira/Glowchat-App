@@ -65,9 +65,8 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 			</div>
 
 			<br>
-
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body scrollbar-black bordered-black square thin" id="messages" style="overflow-y:scroll; overflow-x:hidden; height:550px;">
 
 					<?php 
 					while ( $row = $result->fetch_assoc() ) { 
@@ -123,8 +122,9 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 								}
 							} ?>
 
+						</div>
+						<div class="card-body">
 							<br>
-
 							<form action="sendmessage.php" method="post">
 								<div class="form-row">
 									<input type="text" name="message" style="width: 83%;" class="form-control mr-3"
@@ -135,9 +135,9 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 									style="width: 15%;" class="btn btn-primary" value="Enviar Mensaje">
 								</div>
 							</form>
-
 						</div>
 					</div>
+
 					<?php
 				}
 				else {
@@ -149,4 +149,9 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 			?>
 
 			<link rel="stylesheet" href="css/chatroom.css" type="text/css">
+			<script type="text/javascript">
+				// Auto scroll to bottom
+				var objDiv = document.getElementById("messages");
+				objDiv.scrollTop = objDiv.scrollHeight;
+			</script>
 		</body>
