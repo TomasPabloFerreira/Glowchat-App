@@ -12,7 +12,10 @@ if ( isset($_SESSION["id"]) ) {
 
 		<div class="col-lg-8 pb-4">
 
-			<h1 class="pb-4">GLOWCHAT</h1>
+			<h1>GLOWCHAT</h1>
+			<p class="h3 text-white">Versión de prueba gratuita</p>
+
+			<br>
 
 			<a href="userlist.php" class="btn btn-primary active mb-2">
 				<i class="fas fa-list-ul mr-2"></i>
@@ -24,6 +27,21 @@ if ( isset($_SESSION["id"]) ) {
 				Listar Contactos
 			</a>
 			<br>
+
+			<button href="contactlist.php" class="btn btn-secondary active mb-2" title="Disponible en la versión de pago" disabled>
+				<i class="fas fa-list-ul mr-2"></i>
+				Salas de chat
+			</button>
+
+			<br>
+
+			<button href="contactlist.php" class="btn btn-secondary active mb-4" title="Disponible en la versión de pago" disabled>
+				<i class="fas fa-list-ul mr-2"></i>
+				Mis chats
+			</button>
+
+			<br>
+
 			<a href="logout.php" class="btn btn-danger active">
 				<i class="fas fa-sign-out-alt mr-2"></i>
 				Cerrar Sesion
@@ -51,7 +69,10 @@ if ( isset($_SESSION["id"]) ) {
 	<div class="row text-center">
 		<div class="col-lg-12 pb-4">
 
-			<h1 class="pb-4">GLOWCHAT</h1>
+			<h1>GLOWCHAT</h1>
+			<p class="h3 text-white">Versión de prueba gratuita</p>
+
+			<br>
 
 			<a href="login.php" class="btn btn-info active mb-2">
 				<i class="fas fa-sign-in-alt" style="margin-right:8px;"></i>Ingresar al sistema

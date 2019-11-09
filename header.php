@@ -40,13 +40,10 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Acerca de nosotros</a>
+					<a class="nav-link" href="aboutUs.php">Acerca de nosotros</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Servicios</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Contacto</a>
+					<a class="nav-link" href="contact.php">Contacto</a>
 				</li>
 			</ul>
 		</div>

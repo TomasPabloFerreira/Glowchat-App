@@ -24,19 +24,25 @@ require('islogged.php');
 
 		<div class="col-lg-12">
 
-			<form action="changeProfileImage.php" id="form" method="post" enctype="multipart/form-data">
-				<label class="btn btn-info active">
+			<form action="changeProfileImage.php" id="form" method="post" enctype="multipart/form-data" hidden>
+				<label class="btn btn-secondary active">
 					<i class="fas fa-user-circle pr-1"></i>
 					Cambiar imagen de perfil
-					<input type='file' id="getFile" name="getFile" hidden>
+					<input type='file' id="getFile" name="getFile" hidden disabled>
 					<input type="hidden" name="id" value="<?php echo $_SESSION ['id']; ?>">
 				</label>
 			</form>
+			<button class="btn btn-secondary active mb-2" title="Disponible en la versión de pago" disabled>
+				<i class="fas fa-user-circle pr-1"></i>
+				Cambiar imagen de perfil
+			</button>
 
-			<a href="changepassword.php" class="btn btn-info active mb-2">
+			<br>
+
+			<button href="changepassword.php" class="btn btn-secondary active mb-2"  title="Disponible en la versión de pago" disabled>
 				<i class="fas fa-key pr-1"></i>
 				Cambiar contraseña
-			</a>
+			</button>
 			<br>
 			<a href="index.php" class="btn btn-info active">
 				<i class='fas fa-undo-alt pr-1'></i>
