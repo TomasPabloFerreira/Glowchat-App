@@ -24,11 +24,11 @@ require('islogged.php');
 
 		<div class="col-lg-12">
 
-			<form action="changeProfileImage.php" id="form" method="post" enctype="multipart/form-data" hidden>
+			<form action="changeProfileImage.php" id="form" method="post" enctype="multipart/form-data" hidden disabled>
 				<label class="btn btn-secondary active">
 					<i class="fas fa-user-circle pr-1"></i>
 					Cambiar imagen de perfil
-					<input type='file' id="getFile" name="getFile" hidden disabled>
+					<input type='file' id="getFile" name="getFile" hidden>
 					<input type="hidden" name="id" value="<?php echo $_SESSION ['id']; ?>">
 				</label>
 			</form>

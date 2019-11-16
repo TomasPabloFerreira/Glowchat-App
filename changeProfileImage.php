@@ -33,6 +33,7 @@ if(isset($_POST['id'])){
         exit();
 // if everything is ok, try to upload file
     } else {
+
         if (move_uploaded_file($_FILES["getFile"]["tmp_name"], $myFile)) {
             echo "The file ". basename( $_FILES["getFile"]["name"]). " has been uploaded.";
         } else {

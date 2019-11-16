@@ -142,20 +142,21 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 					</div>
 				</div>
 
-				<?php
-			}
-			else {
+				<input type="hidden" name="sessionid" id="sessionid" value="<?php echo $sessionid ?>">
+
+				<link rel="stylesheet" href="css/chatroom.css" type="text/css">
+				<script type="text/javascript" src="js/chatroom.js">
+
+					<?php
+				}
+				else {
+					header("Location: contactlist.php");
+				}
+			} else {
 				header("Location: contactlist.php");
 			}
-		} else {
-			header("Location: contactlist.php");
-		}
-		?>
+			?>
 
-		<link rel="stylesheet" href="css/chatroom.css" type="text/css">
-		<script type="text/javascript">
-				// Auto scroll to bottom
-				var objDiv = document.getElementById("messages");
-				objDiv.scrollTop = objDiv.scrollHeight;
-			</script>
-		</body>
+
+		</script>
+	</body>

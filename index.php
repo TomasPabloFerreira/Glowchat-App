@@ -17,15 +17,11 @@ if ( isset($_SESSION["id"]) ) {
 
 			<br>
 
-			<a href="userlist.php" class="btn btn-primary active mb-2">
+			<button href="contactlist.php" class="btn btn-secondary active mb-2" title="Disponible en la versión de pago" disabled>
 				<i class="fas fa-list-ul mr-2"></i>
-				Listar Usuarios
-			</a>
-			<br>
-			<a href="contactlist.php" class="btn btn-success active mb-2">
-				<i class="fas fa-list-ul mr-2"></i>
-				Listar Contactos
-			</a>
+				Mis chats
+			</button>
+			
 			<br>
 
 			<button href="contactlist.php" class="btn btn-secondary active mb-2" title="Disponible en la versión de pago" disabled>
@@ -35,10 +31,17 @@ if ( isset($_SESSION["id"]) ) {
 
 			<br>
 
-			<button href="contactlist.php" class="btn btn-secondary active mb-4" title="Disponible en la versión de pago" disabled>
+			<a href="userlist.php" class="btn btn-primary active mb-2">
 				<i class="fas fa-list-ul mr-2"></i>
-				Mis chats
-			</button>
+				Listar Usuarios
+			</a>
+
+			<br>
+			
+			<a href="contactlist.php" class="btn btn-success active mb-4">
+				<i class="fas fa-list-ul mr-2"></i>
+				Listar Contactos
+			</a>
 
 			<br>
 
