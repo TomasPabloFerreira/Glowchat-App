@@ -3,15 +3,12 @@
 include_once 'dbConnection.php';
 
 $chatRoomId = $_GET['chatRoomId'];
-$messagesCount = $_GET['messagesCount']; 
 
 $sql = "
-(SELECT * FROM messages WHERE chat_room_id = $chatRoomId ORDER BY id desc LIMIT $messagesCount) ORDER BY id asc
+SELECT messages_count FROM chat_rooms WHERE id = $chatRoomId
 ";
 
 $result = $mysqli->query($sql);
-
-$rows = [];
 
 while ( $row = $result->fetch_assoc() ) { 
 

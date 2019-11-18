@@ -72,10 +72,10 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 
 			</div>
 			<div class="card-body">
-				<form action="sendmessage.php" method="post">
+				<form method="post" id="sendMessageForm">
 					<div class="form-row">
 						<div class="col-lg-10">
-							<input type="text" name="message" class="form-control mr-3"
+							<input type="text" name="message" id="message" class="form-control mr-3"
 							placeholder="Escribe tu mensaje aquí" autofocus>
 						</div>
 						<input type="hidden" name="chat_room_id" id="chat_room_id" value="<?php echo $chatRoomId ?>">

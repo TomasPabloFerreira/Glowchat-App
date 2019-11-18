@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `chat_rooms` (
 `name` varchar(45) NOT NULL,
 `user1` int(11) NOT NULL,
 `user2` int(11) NOT NULL,
+`messages_count` int(11),
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ";

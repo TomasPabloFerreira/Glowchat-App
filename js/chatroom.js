@@ -5,9 +5,19 @@
 	*/
 
 // Chat messages
-var chatMessages = {
+var chatMessagesData = {
 	totalMessages: null,
 	loadedMessages: null,
+	messages: null,
+};
+
+// Elements
+var chatElements = {
+	messages_div: null,
+	chatRoomId: null,
+	sessionid: null,
+	sendMessageForm: null,
+	message: null
 };
 
 /*
@@ -16,18 +26,50 @@ var chatMessages = {
 
 // Main execution
 
-var messages_div = document.querySelector("#messages");
-var chatRoomId = document.querySelector("#chat_room_id").value;
-var sessionid = document.querySelector("#sessionid").value;
-
+loadElements ();
 var messages = [];
 
-getMessages()
-.then( data => data.json() )
-.then( data => {
-	messages = data;
-	putMessages( messages_div, messages, sessionid );	
-	scrollToBottom(messages_div);
+getMessages( 5 )
+.then( () => {
+	putMessages();
+	scrollToBottom();
+});
+
+// MESSAGE SENDER
+chatElements.sendMessageForm.addEventListener( "submit", (e) => {
+
+	// PREVENT SUBMIT
+	e.preventDefault();
+
+	// APPEND FORM DATA
+	var data = new FormData();
+	data.append('message', chatElements.message.value);
+	data.append('user_id', chatElements.sessionid);
+	data.append('chat_room_id', chatElements.chatRoomId);
+
+	// INIT AJAX
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', "sendmessage.php", true)
+
+	// WHEN THE PROCESS IS COMPLETE
+	xhr.onload = function(){
+		console.log("Mensaje enviado");
+	};
+
+	// SEND
+	xhr.send(data);
+
+	// RESTORE INPUT VALUE
+	chatElements.message.value = "";
+
+});
+
+getMessagesCount()
+.then( () => {
+	
+	chatMessagesData.loadedMessages = parseInt(chatMessagesData.totalMessages);
+
+	keepChatUpdated ();
 });
 
 /*
@@ -49,63 +91,91 @@ primer select limitando la cantidad de elementos.
 // Get messages from ajax petition
 function getMessages ( count ) {
 
-	return fetch("get-messages.php?chatRoomId='" + chatRoomId + "'");
+	return fetch("get-messages.php?chatRoomId='" + chatElements.chatRoomId + "'&messagesCount=" + count )
+	.then( data => data.json() )
+	.then( data => chatMessagesData.messages = data);
+}
+
+// Get messages count
+function getMessagesCount () {
+	return fetch("get-messages-count.php?chatRoomId='" + chatElements.chatRoomId + "'")
+	.then( data => data.json())
+	.then( data => {
+		chatMessagesData.totalMessages = data[0].messages_count;
+	});
+}
+
+function loadElements () {
+
+	chatElements.messages_div = document.querySelector("#messages");
+	chatElements.sendMessageForm = document.querySelector("#sendMessageForm");
+	chatElements.message = document.querySelector("#message");
+	chatElements.chatRoomId = document.querySelector("#chat_room_id").value;
+	chatElements.sessionid = document.querySelector("#sessionid").value;
 }
 
 // Verify each 1 second if there are new messages, if does then put new messages
 function keepChatUpdated () {
 
-	var added = verifyNewMessages ();
-	if (added) {
-		getMessages( added )
-		.then( data => data.json() )
-		.then( data => {
-			messages = data;
-			putMessages (messagesDiv, new_messages);
-		});
+	for (let i=1; i<50000; i++) {
+		setTimeout( function timer(){
+
+			getMessagesCount()
+			.then( () => {
+
+				var added = verifyNewMessages ();
+				chatMessagesData.loadedMessages += added;
+
+				if (added) {
+					getMessages( added )
+					.then( () => {
+						putMessages ();
+						scrollToBottom();
+					});
+				}
+			});
+		}, i*500 );
 	}
 }
 
 // Verify if new messages were sents
 function verifyNewMessages () {
 
-	chatMessages.totalMessages = "ajax petition to table chatrooms";
-
-	if ( chatMessages.totalMessages != chatMessages.loadedMessages ) {
-		return (chatMessages.totalMessages - chatMessages.loadedMessages);
+	if ( chatMessagesData.totalMessages != chatMessagesData.loadedMessages ) {
+		return (chatMessagesData.totalMessages - chatMessagesData.loadedMessages);
 	} else {
 		return 0;
 	}
 }
 
 // Put Messages into messages_div
-function putMessages ( messagesDiv, messages, sessionid ) {
+function putMessages () {
 
-	messages.map( (message,i) => {
-		messages_div.append(getHtmlMessage(message, sessionid));
+	chatMessagesData.messages.map( (message,i) => {
+		chatElements.messages_div.append(getHtmlMessage(message));
 	});
 }
 
-function getHtmlMessage ( message, sessionid ) {
+function getHtmlMessage ( message ) {
 
 	var htmlMessage = getDiv();
 	htmlMessage.className = "row";
 	//	<div class="row">
 
-	if ( message.user_id == sessionid) {
+	if ( message.user_id == chatElements.sessionid) {
 
-		generateLoggedUserMessage (htmlMessage, message, sessionid);
+		generateLoggedUserMessage (htmlMessage, message );
 
 	} else {
 
-		generateNotLoggedUserMessage(htmlMessage, message, sessionid);
+		generateNotLoggedUserMessage(htmlMessage, message );
 	}
 
 	return htmlMessage;
 }
 
 // Get html message of the logged user
-function generateLoggedUserMessage (htmlMessage, message, sessionid) {
+function generateLoggedUserMessage ( htmlMessage, message ) {
 
 	// col
 	var col_4 = getDiv();
@@ -123,7 +193,7 @@ function generateLoggedUserMessage (htmlMessage, message, sessionid) {
 	// image
 	var image = document.createElement("IMG");
 
-	image.src = "images/"+ sessionid +".jpg";
+	image.src = "images/"+ chatElements.sessionid +".jpg";
 
 	image.onerror = function(){
 		image.src = "images/perfil default.png";
@@ -159,7 +229,7 @@ function generateLoggedUserMessage (htmlMessage, message, sessionid) {
 }
 
 // Get html message of the not logged user
-function generateNotLoggedUserMessage (htmlMessage, message, sessionid) {
+function generateNotLoggedUserMessage ( htmlMessage, message ) {
 
 	var col_8 = getDiv();
 	col_8.className = "col-lg-8";
@@ -170,7 +240,7 @@ function generateNotLoggedUserMessage (htmlMessage, message, sessionid) {
 	// image
 	var image = document.createElement("IMG");
 
-	image.src = "images/"+ sessionid +".jpg";
+	image.src = "images/"+ chatElements.sessionid +".jpg";
 
 	image.onerror = function(){
 		image.src = "images/perfil default.png";
@@ -223,5 +293,5 @@ function getSpan() {
 // Auto scroll to bottom
 function scrollToBottom (messages_div) {
 
-	messages_div.scrollTop = messages_div.scrollHeight;
+	chatElements.messages_div.scrollTop = chatElements.messages_div.scrollHeight;
 }
