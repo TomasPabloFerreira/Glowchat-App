@@ -92,17 +92,17 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 
 		<link rel="stylesheet" href="css/chatroom.css" type="text/css">
 		<script type="text/javascript" src="js/chatroom.js">
+		</script>
 
-			<?php
-		}
-		else {
-			header("Location: contactlist.php");
-		}
-	} else {
+		<?php
+	}
+	else {
 		header("Location: contactlist.php");
 	}
-	?>
+} else {
+	header("Location: contactlist.php");
+}
+?>
 
 
-</script>
 </body>

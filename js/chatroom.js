@@ -29,7 +29,7 @@ var chatElements = {
 loadElements ();
 var messages = [];
 
-getMessages( 5 )
+getMessages( 30 )
 .then( () => {
 	putMessages();
 	scrollToBottom();
@@ -73,15 +73,9 @@ getMessagesCount()
 });
 
 /*
-Cambios a realizar para reducir la complejidad de carga de mensajes:
 
-- Agregar campo messages_count a la tabla chat_rooms.
-Ver si cambia la cantidad de mensajes para verificar si se enviaron mensajes.
-Si cambia ese valor, hace un select limit (cantidad actual - cantidad inicial)
-y agrega esos mensajes al final del messages_div.
+- Agregar al principio del messages_div un boton que sea cargar más.
 
-- Agregar al principio del messages_div un boton que sea cargar más, y hacer el 
-primer select limitando la cantidad de elementos.
 */
 
 /*
