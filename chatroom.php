@@ -69,94 +69,41 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 				<div class="card-body scrollbar-black bordered-black square thin" id="messages"
 				style="overflow-y:scroll; overflow-x:hidden; height: calc(100vh - 400px);">
 
-				<?php 
-				while ( $row = $result->fetch_assoc() ) { 
-					if ( $row['user_id'] == $sessionid ){
-						?>
-						<div class="row">
-							<div class="col-lg-4"></div>
-							<div class="col-lg-8">
-								<div class="container darker">
-									<img src="images/<?php 
-									if(file_exists("images/$sessionid.jpg"))
-									{
-										echo "$sessionid.jpg";
-										} else {
-											echo "perfil default.png";
-										}
-										?>" alt="Avatar" class="right">
-										<p class="text-right">
-											<?php echo $row['message']; ?>
-										</p>
-										<span class="time-left">
-											<?php echo $row['datetime']; ?>
-										</span>
-									</div>
-								</div>
-							</div>
-							<?php
-						} else {
-							?>
 
-							<div class="row">
-								<div class="col-lg-8">
-									<div class="container text-left">
-										<img src="images/<?php
-										if(file_exists("images/".$row['user_id'].".jpg"))
-										{
-											echo $row['user_id'].".jpg";
-											} else {
-												echo "perfil default.png";
-											}
-											?>" alt="Avatar">
-											<p>
-												<?php echo $row['message']; ?>
-											</p>
-											<span class="time-right">
-												<?php echo $row['datetime']; ?>
-											</span>
-										</div>
-									</div>
-									<div class="col-lg-4"></div>
-								</div>
-								<?php
-							}
-						} ?>
-
+			</div>
+			<div class="card-body">
+				<form action="sendmessage.php" method="post">
+					<div class="form-row">
+						<div class="col-lg-10">
+							<input type="text" name="message" class="form-control mr-3"
+							placeholder="Escribe tu mensaje aquí" autofocus>
+						</div>
+						<input type="hidden" name="chat_room_id" value="<?php echo $chatRoomId ?>">
+						<input type="hidden" name="user_id" value="<?php echo $sessionid ?>">
+						<div class="col-lg-2">
+							<input type="submit" name="sendmessage" id="sendmessage"
+							class="btn btn-primary" value="Enviar Mensaje">
+						</div>
 					</div>
-					<div class="card-body">
-						<form action="sendmessage.php" method="post">
-							<div class="form-row">
-								<div class="col-lg-10">
-									<input type="text" name="message" class="form-control mr-3"
-									placeholder="Escribe tu mensaje aquí" autofocus>
-								</div>
-								<input type="hidden" name="chat_room_id" value="<?php echo $chatRoomId ?>">
-								<input type="hidden" name="user_id" value="<?php echo $sessionid ?>">
-								<div class="col-lg-2">
-									<input type="submit" name="sendmessage" id="sendmessage"
-									class="btn btn-primary" value="Enviar Mensaje">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
+				</form>
+			</div>
+		</div>
 
-				<input type="hidden" name="sessionid" id="sessionid" value="<?php echo $sessionid ?>">
+		<input type="hidden" name="sessionid" id="sessionid" value="<?php echo $sessionid ?>">
 
-				<link rel="stylesheet" href="css/chatroom.css" type="text/css">
-				<script type="text/javascript" src="js/chatroom.js">
+		<link rel="stylesheet" href="css/chatroom.css" type="text/css">
+		<script type="text/javascript" src="js/chatroom.js">
 
-					<?php
-				}
-				else {
-					header("Location: contactlist.php");
-				}
-			} else {
-				header("Location: contactlist.php");
-			}
-			?>
+			<?php
+		}
+		else {
+			header("Location: contactlist.php");
+		}
+	} else {
+		header("Location: contactlist.php");
+	}
+	?>
 
 
-		</script>
-	</body>
+</script>
+</body>

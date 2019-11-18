@@ -7,9 +7,15 @@
 // Main execution
 var messages_div = document.querySelector("#messages");
 
-var messages = getMessages();
+var messages = [];
 
-putMessages( messages );
+getMessages()
+.then( data => data.json() )
+.then( data => {
+	messages = data;
+	putMessages( messages_div, messages );
+});
+
 
 scrollToBottom(messages_div);
 
@@ -18,7 +24,7 @@ each 1 second call
 
 var added = verifyNewMessages ();
 if (added) {
-	// var new_messages = getNewMessages( new_messages_count);
+	// var new_messages = getMessages( new_messages_count);
 	// putMessages (messagesDiv, new_messages)
 }
 
@@ -42,23 +48,24 @@ primer select limitando la cantidad de elementos.
 	*/
 
 // Testing data
-var message = {
-	user_id: 7,
-	message: "MY MESSAGE",
-	datetime: "2019-11-16 18:48:13"
-};
+// var message = {
+// 	user_id: 7,
+// 	message: "MY MESSAGE",
+// 	datetime: "2019-11-16 18:48:13"
+// };
 
-var htmlMessage = getHtmlMessage( message );
+// var htmlMessage = getHtmlMessage( message );
 
-messages_div.append(htmlMessage);
+// messages_div.append(htmlMessage);
 
 /*
 	FUNCTIONS
 	*/
 
 // Get messages from ajax petition
-function getMessages () {
+function getMessages ( count ) {
 
+	return fetch('get-messages.php');
 }
 
 
@@ -71,20 +78,13 @@ function verifyNewMessages () {
 
 }
 
-// Get new messages from ajax petition
-function getNewMessages ( new_messages_count) {
 
-}
-
+// Put Messages into messages_div
 function putMessages ( messagesDiv, messages ) {
 
-	// Put Messages into messages_div
-	
-	/*
-	foreach messages as message {
-		messages_div.append(formatMessage(message));
-	}
-	*/
+	messages.map( (message,i) => {
+		messages_div.append(getHtmlMessage(message));
+	});
 }
 
 function getHtmlMessage ( message ) {
@@ -97,18 +97,18 @@ function getHtmlMessage ( message ) {
 
 	if ( message.user_id == sessionid) {
 
-		generateLoggedUserMessage (htmlMessage, sessionid);
+		generateLoggedUserMessage (htmlMessage, message, sessionid);
 
 	} else {
 
-		generateNotLoggedUserMessage(htmlMessage, sessionid);
+		generateNotLoggedUserMessage(htmlMessage, message, sessionid);
 	}
 
 	return htmlMessage;
 }
 
 // Get html message of the logged user
-function generateLoggedUserMessage (htmlMessage, sessionid) {
+function generateLoggedUserMessage (htmlMessage, message, sessionid) {
 
 	// col
 	var col_4 = getDiv();
@@ -162,7 +162,7 @@ function generateLoggedUserMessage (htmlMessage, sessionid) {
 }
 
 // Get html message of the not logged user
-function generateNotLoggedUserMessage (htmlMessage, sessionid) {
+function generateNotLoggedUserMessage (htmlMessage, message, sessionid) {
 
 	var col_8 = getDiv();
 	col_8.className = "col-lg-8";
