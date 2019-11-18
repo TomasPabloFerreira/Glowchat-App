@@ -2,7 +2,7 @@
 
 include_once 'dbConnection.php';
 
-$chatRoomId = 11;
+$chatRoomId = $_GET['chatRoomId'];
 
 $sql = "
 SELECT * FROM messages WHERE chat_room_id = $chatRoomId

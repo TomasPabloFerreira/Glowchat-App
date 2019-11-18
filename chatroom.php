@@ -78,8 +78,9 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 							<input type="text" name="message" class="form-control mr-3"
 							placeholder="Escribe tu mensaje aquí" autofocus>
 						</div>
-						<input type="hidden" name="chat_room_id" value="<?php echo $chatRoomId ?>">
+						<input type="hidden" name="chat_room_id" id="chat_room_id" value="<?php echo $chatRoomId ?>">
 						<input type="hidden" name="user_id" value="<?php echo $sessionid ?>">
+						<input type="hidden" name="sessionid" id="sessionid" value="<?php echo $sessionid ?>">
 						<div class="col-lg-2">
 							<input type="submit" name="sendmessage" id="sendmessage"
 							class="btn btn-primary" value="Enviar Mensaje">
@@ -88,8 +89,6 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 				</form>
 			</div>
 		</div>
-
-		<input type="hidden" name="sessionid" id="sessionid" value="<?php echo $sessionid ?>">
 
 		<link rel="stylesheet" href="css/chatroom.css" type="text/css">
 		<script type="text/javascript" src="js/chatroom.js">

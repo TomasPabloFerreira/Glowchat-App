@@ -1,11 +1,24 @@
 'use strict'
 
 /*
+	DATA
+	*/
+
+// Chat messages
+var chatMessages = {
+	totalMessages: null,
+	loadedMessages: null,
+};
+
+/*
 	EXECUTION
 	*/
 
 // Main execution
+
 var messages_div = document.querySelector("#messages");
+var chatRoomId = document.querySelector("#chat_room_id").value;
+var sessionid = document.querySelector("#sessionid").value;
 
 var messages = [];
 
@@ -13,22 +26,9 @@ getMessages()
 .then( data => data.json() )
 .then( data => {
 	messages = data;
-	putMessages( messages_div, messages );
+	putMessages( messages_div, messages, sessionid );	
+	scrollToBottom(messages_div);
 });
-
-
-scrollToBottom(messages_div);
-
-/*
-each 1 second call 
-
-var added = verifyNewMessages ();
-if (added) {
-	// var new_messages = getMessages( new_messages_count);
-	// putMessages (messagesDiv, new_messages)
-}
-
-*/
 
 /*
 Cambios a realizar para reducir la complejidad de carga de mensajes:
@@ -42,22 +42,6 @@ y agrega esos mensajes al final del messages_div.
 primer select limitando la cantidad de elementos.
 */
 
-
-/*
-	TESTING
-	*/
-
-// Testing data
-// var message = {
-// 	user_id: 7,
-// 	message: "MY MESSAGE",
-// 	datetime: "2019-11-16 18:48:13"
-// };
-
-// var htmlMessage = getHtmlMessage( message );
-
-// messages_div.append(htmlMessage);
-
 /*
 	FUNCTIONS
 	*/
@@ -65,31 +49,44 @@ primer select limitando la cantidad de elementos.
 // Get messages from ajax petition
 function getMessages ( count ) {
 
-	return fetch('get-messages.php');
+	return fetch("get-messages.php?chatRoomId='" + chatRoomId + "'");
 }
 
+// Verify each 1 second if there are new messages, if does then put new messages
+function keepChatUpdated () {
+
+	var added = verifyNewMessages ();
+	if (added) {
+		getMessages( added )
+		.then( data => data.json() )
+		.then( data => {
+			messages = data;
+			putMessages (messagesDiv, new_messages);
+		});
+	}
+}
 
 // Verify if new messages were sents
 function verifyNewMessages () {
 
-	// if (count changed from chat_rooms )
+	chatMessages.totalMessages = "ajax petition to table chatrooms";
 
-	// return addedCount;
-
+	if ( chatMessages.totalMessages != chatMessages.loadedMessages ) {
+		return (chatMessages.totalMessages - chatMessages.loadedMessages);
+	} else {
+		return 0;
+	}
 }
 
-
 // Put Messages into messages_div
-function putMessages ( messagesDiv, messages ) {
+function putMessages ( messagesDiv, messages, sessionid ) {
 
 	messages.map( (message,i) => {
-		messages_div.append(getHtmlMessage(message));
+		messages_div.append(getHtmlMessage(message, sessionid));
 	});
 }
 
-function getHtmlMessage ( message ) {
-
-	var sessionid = document.querySelector("#sessionid").value;
+function getHtmlMessage ( message, sessionid ) {
 
 	var htmlMessage = getDiv();
 	htmlMessage.className = "row";
