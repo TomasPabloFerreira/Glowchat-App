@@ -53,8 +53,8 @@ if( $roomRow = mysqli_fetch_array($result) ) {
 
 					<?php echo $nameWith; ?>
 				</div>
-				<div class="col-lg-6"></div>
-				<div class="col-lg-2 ">
+				<div class="col-lg-7"></div>
+				<div class="col-lg-1 ">
 					<i>
 						<a href="profile.php">
 							<div class="fas fa-user mr-1" ></div>

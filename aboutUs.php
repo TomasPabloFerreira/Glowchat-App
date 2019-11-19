@@ -12,10 +12,10 @@ include_once 'header.php';
 		</p>
 		<p class="card-text" style="color: white;">
 			Sabemos que una empresa sin comunicación está destinada al fracaso, por lo que desarrollamos este sistema
-			para que todo el personal de tu empresa pueda comunicarse de una forma intuitiva.
+			para que todo el personal de tu empresa pueda comunicarse de una forma sencilla.
 		</p>
 		<p class="card-text" style="color: white;">
-			Podemos ayudarte a llevar a tu empresa al siguiente nivel, contacta con nosotros para obtener mas información y que te brindemos un asesoramiento gratuito.
+			Podemos ayudarte a llevar a tu empresa al siguiente nivel, contacta con nosotros para obtener más información y que te brindemos un asesoramiento gratuito.
 		</p>
 		<br>
 
