@@ -32,7 +32,6 @@ var messages = [];
 getMessages( 30 )
 .then( () => {
 	putMessages();
-	scrollToBottom();
 });
 
 // MESSAGE SENDER
@@ -124,7 +123,6 @@ function keepChatUpdated () {
 					getMessages( added )
 					.then( () => {
 						putMessages ();
-						scrollToBottom();
 					});
 				}
 			});
@@ -148,6 +146,8 @@ function putMessages () {
 	chatMessagesData.messages.map( (message,i) => {
 		chatElements.messages_div.append(getHtmlMessage(message));
 	});
+	
+	scrollToBottom();
 }
 
 function getHtmlMessage ( message ) {
