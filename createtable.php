@@ -1,13 +1,6 @@
 <?php
 include('header.php');
-?>
-<?php
-
-$servername = "localhost";
-$username = "poli_uno";
-$password = "poli1";
-$database = "poli_trece";
-$mysqli = new mysqli ($servername,$username,$password, $database);
+include 'dbConnection.php';
 
 if ($mysqli->connect_errno) {
 	printf("Conexión fallida: %s\n", $mysqli->connect_error);
