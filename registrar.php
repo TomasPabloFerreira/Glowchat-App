@@ -1,19 +1,12 @@
 <?php
 include('header.php');
-?>
-<?php
+include 'dbConnection.php';
 
 $name = $_POST["Nombre_usuario"];
 
 $pass = $_POST["Password_usuario"];
 
 if (!empty($name) && !empty($pass)){
-
-  $servername = "localhost";
-  $username = "poli_uno";
-  $password = "poli1";
-  $database = "poli_trece";
-  $mysqli = new mysqli ($servername,$username,$password, $database);
 
   if ($mysqli->connect_errno) {
     printf("Conexión fallida: %s\n", $mysqli->connect_error);
